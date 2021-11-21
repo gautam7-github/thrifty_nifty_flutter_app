@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.prodiginix.thrifty_nifty_app">
+    package="com.prodiginix.thrifty_nifty">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="thrifty_nifty_app"
+        android:label="Thrifty Nifty"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
