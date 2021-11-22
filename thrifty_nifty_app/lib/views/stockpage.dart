@@ -28,9 +28,7 @@ class _StockPageState extends State<StockPage> {
         leading: IconButton(
           onPressed: () async {
             HapticFeedback.selectionClick();
-            Get.off(
-              () => LoadingPage(ToIndex: true),
-            );
+            Get.back();
           },
           icon: Icon(
             Icons.arrow_back_rounded,
