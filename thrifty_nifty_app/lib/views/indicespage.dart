@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
 import 'package:thrifty_nifty_app/model/index.dart';
 import 'package:thrifty_nifty_app/views/loadingpage.dart';
-import 'package:thrifty_nifty_app/views/stockpage.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key? key}) : super(key: key);
@@ -32,6 +32,7 @@ class _IndexPageState extends State<IndexPage> {
           backgroundColor: Color(0xFF2e2e2e),
           triggerMode: RefreshIndicatorTriggerMode.onEdge,
           onRefresh: () async {
+            HapticFeedback.selectionClick();
             await networkController.fetchIndicesData();
             setState(() {});
           },
@@ -46,6 +47,7 @@ class _IndexPageState extends State<IndexPage> {
             itemBuilder: (context, idx) {
               return MaterialButton(
                 onPressed: () {
+                  HapticFeedback.selectionClick();
                   setState(
                     () {
                       networkController.currentIndex = indices[idx].index;
@@ -55,7 +57,7 @@ class _IndexPageState extends State<IndexPage> {
                   );
                   Get.to(
                     () => LoadingPage(
-                      whereTo: false,
+                      ToIndex: false,
                     ),
                   );
                 },

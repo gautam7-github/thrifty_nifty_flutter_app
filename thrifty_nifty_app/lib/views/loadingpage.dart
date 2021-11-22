@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
@@ -8,8 +9,8 @@ import 'package:thrifty_nifty_app/views/indicespage.dart';
 import 'package:thrifty_nifty_app/views/stockpage.dart';
 
 class LoadingPage extends StatefulWidget {
-  bool? whereTo;
-  LoadingPage({Key? key, required this.whereTo}) : super(key: key);
+  bool? ToIndex;
+  LoadingPage({Key? key, required this.ToIndex}) : super(key: key);
 
   @override
   _LoadingPageState createState() => _LoadingPageState();
@@ -35,7 +36,7 @@ class _LoadingPageState extends State<LoadingPage> {
     final _random = Random();
     chosen = quirks[_random.nextInt(quirks.length)];
     return FutureBuilder(
-      future: widget.whereTo!
+      future: widget.ToIndex!
           ? networkController.fetchIndicesData()
           : networkController.fetchData(),
       builder: (context, snapshot) {
@@ -100,7 +101,8 @@ class _LoadingPageState extends State<LoadingPage> {
             ),
           );
         } else {
-          return widget.whereTo! ? IndexPage() : StockPage();
+          HapticFeedback.vibrate();
+          return widget.ToIndex! ? IndexPage() : StockPage();
         }
       },
     );

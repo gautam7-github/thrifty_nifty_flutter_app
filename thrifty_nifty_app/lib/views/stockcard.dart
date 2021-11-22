@@ -122,7 +122,7 @@ class StockDetailPage extends StatelessWidget {
                 child: Hero(
                   tag: "$index",
                   child: Text(
-                    "NSE:${stocks[index!].ticker}",
+                    "${stocks[index!].ticker}",
                     style: GoogleFonts.raleway(
                       fontSize: 20,
                       color: Colors.white,

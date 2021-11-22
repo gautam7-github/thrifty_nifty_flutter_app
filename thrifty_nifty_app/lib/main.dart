@@ -18,7 +18,7 @@ class BaseApp extends StatelessWidget {
       title: "Thrifty Nifty",
       debugShowCheckedModeBanner: false,
       home: LoadingPage(
-        whereTo: true,
+        ToIndex: true,
       ),
     );
   }

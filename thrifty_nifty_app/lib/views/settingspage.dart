@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
           onPressed: () {
             Get.off(
               () => LoadingPage(
-                whereTo: false,
+                ToIndex: false,
               ),
             );
           },

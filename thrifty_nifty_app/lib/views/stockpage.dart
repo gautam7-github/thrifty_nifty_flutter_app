@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
+import 'package:thrifty_nifty_app/views/loadingpage.dart';
 import 'package:thrifty_nifty_app/views/settingspage.dart';
 import 'package:thrifty_nifty_app/views/stocklist.dart';
 
@@ -25,7 +27,10 @@ class _StockPageState extends State<StockPage> {
         foregroundColor: Color(0xFF05fa9b),
         leading: IconButton(
           onPressed: () async {
-            Get.back();
+            HapticFeedback.selectionClick();
+            Get.off(
+              () => LoadingPage(ToIndex: true),
+            );
           },
           icon: Icon(
             Icons.arrow_back_rounded,
@@ -36,6 +41,7 @@ class _StockPageState extends State<StockPage> {
         actions: [
           IconButton(
             onPressed: () async {
+              HapticFeedback.selectionClick();
               Get.to(
                 () => SettingsPage(),
               )!
