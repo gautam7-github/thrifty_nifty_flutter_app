@@ -3,9 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
-import 'package:thrifty_nifty_app/views/loadingpage.dart';
-import 'package:thrifty_nifty_app/views/settingspage.dart';
 import 'package:thrifty_nifty_app/views/stocklist.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class StockPage extends StatefulWidget {
   const StockPage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class _StockPageState extends State<StockPage> {
           "Thrifty Nifty".toUpperCase(),
         ),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF121212),
         foregroundColor: Color(0xFF05fa9b),
         leading: IconButton(
           onPressed: () async {
@@ -40,15 +39,8 @@ class _StockPageState extends State<StockPage> {
           IconButton(
             onPressed: () async {
               HapticFeedback.selectionClick();
-              Get.to(
-                () => SettingsPage(),
-              )!
-                  .then(
-                (value) => () async {
-                  await networkController.fetchData();
-                },
-              );
-              setState(() {});
+              Get.back();
+              dispose();
             },
             icon: Icon(
               Icons.settings_rounded,
@@ -60,15 +52,14 @@ class _StockPageState extends State<StockPage> {
       ),
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: RefreshIndicator(
+        child: LiquidPullToRefresh(
+          showChildOpacityTransition: false,
           onRefresh: () async {
             await networkController.fetchData();
             setState(() {});
           },
-          triggerMode: RefreshIndicatorTriggerMode.onEdge,
           backgroundColor: Colors.black,
           color: Color(0xFF05fa9b),
-          strokeWidth: 3,
           child: ListView(
             physics: BouncingScrollPhysics(),
             children: [

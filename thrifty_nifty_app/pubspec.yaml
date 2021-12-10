@@ -16,6 +16,7 @@ dependencies:
   get: ^4.3.8
   loading_indicator: ^3.0.2
   google_fonts: ^2.1.0
+  liquid_pull_to_refresh: ^3.0.0
 
 dev_dependencies:
   flutter_test:

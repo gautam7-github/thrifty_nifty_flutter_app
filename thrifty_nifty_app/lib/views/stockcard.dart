@@ -141,19 +141,34 @@ class StockDetailPage extends StatelessWidget {
                   decoration: TextDecoration.none,
                 ),
               ),
-              Hero(
-                tag: "pr$index",
-                child: Text(
-                  "${stocks[index!].cmktPrice}",
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: (stocks[index!].change >= 0.0)
-                        ? Colors.green
-                        : Colors.red,
-                    decoration: TextDecoration.none,
+              Column(
+                children: [
+                  Hero(
+                    tag: "pr$index",
+                    child: Text(
+                      "${stocks[index!].cmktPrice}",
+                      style: GoogleFonts.inter(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: (stocks[index!].change >= 0.0)
+                            ? Colors.green
+                            : Colors.red,
+                        decoration: TextDecoration.none,
+                      ),
+                    ),
                   ),
-                ),
+                  Text(
+                    "${stocks[index!].change}",
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: (stocks[index!].change >= 0.0)
+                          ? Colors.green
+                          : Colors.red,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

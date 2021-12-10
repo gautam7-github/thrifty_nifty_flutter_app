@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
 import 'package:thrifty_nifty_app/model/index.dart';
 import 'package:thrifty_nifty_app/views/loadingpage.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key? key}) : super(key: key);
@@ -27,10 +28,11 @@ class _IndexPageState extends State<IndexPage> {
       ),
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: RefreshIndicator(
+        child: LiquidPullToRefresh(
           color: Color(0xFF05fa9b),
           backgroundColor: Color(0xFF2e2e2e),
-          triggerMode: RefreshIndicatorTriggerMode.onEdge,
+          showChildOpacityTransition: false,
+          animSpeedFactor: 3.0,
           onRefresh: () async {
             HapticFeedback.selectionClick();
             await networkController.fetchIndicesData();
