@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
+import 'package:thrifty_nifty_app/views/settingspage.dart';
 import 'package:thrifty_nifty_app/views/stocklist.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
@@ -39,7 +40,15 @@ class _StockPageState extends State<StockPage> {
           IconButton(
             onPressed: () async {
               HapticFeedback.selectionClick();
-              Get.back();
+              Get.to(
+                () => SettingsPage(),
+              )!
+                  .then(
+                (value) => () async {
+                  await networkController.fetchData();
+                },
+              );
+              setState(() {});
               dispose();
             },
             icon: Icon(
@@ -53,6 +62,7 @@ class _StockPageState extends State<StockPage> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: LiquidPullToRefresh(
+          animSpeedFactor: 3.0,
           showChildOpacityTransition: false,
           onRefresh: () async {
             await networkController.fetchData();

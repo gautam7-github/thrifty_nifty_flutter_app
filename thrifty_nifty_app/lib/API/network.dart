@@ -73,5 +73,5 @@ class Network {
 Network networkController = Network(
   currentIndex: "Nifty 50",
   indexTicker: "50",
-  sortBy: "mcap",
+  sortBy: "chng",
 );
