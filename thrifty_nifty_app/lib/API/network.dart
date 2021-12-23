@@ -75,3 +75,4 @@ Network networkController = Network(
   indexTicker: "50",
   sortBy: "chng",
 );
+dynamic indiceVal;

@@ -3,13 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thrifty_nifty_app/API/network.dart';
+import 'package:thrifty_nifty_app/model/index.dart';
 import 'package:thrifty_nifty_app/views/settingspage.dart';
 import 'package:thrifty_nifty_app/views/stocklist.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class StockPage extends StatefulWidget {
-  const StockPage({Key? key}) : super(key: key);
-
+  const StockPage({
+    Key? key,
+  });
   @override
   State<StockPage> createState() => _StockPageState();
 }
@@ -49,7 +51,6 @@ class _StockPageState extends State<StockPage> {
                 },
               );
               setState(() {});
-              dispose();
             },
             icon: Icon(
               Icons.settings_rounded,
@@ -62,14 +63,14 @@ class _StockPageState extends State<StockPage> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: LiquidPullToRefresh(
-          animSpeedFactor: 3.0,
+          animSpeedFactor: 4.0,
+          color: Colors.transparent,
+          backgroundColor: Color(0xFF05fa9b),
           showChildOpacityTransition: false,
           onRefresh: () async {
             await networkController.fetchData();
             setState(() {});
           },
-          backgroundColor: Colors.black,
-          color: Color(0xFF05fa9b),
           child: ListView(
             physics: BouncingScrollPhysics(),
             children: [
@@ -77,13 +78,27 @@ class _StockPageState extends State<StockPage> {
                 child: Container(
                   height: MediaQuery.of(context).size.height / 8,
                   child: Center(
-                    child: Text(
-                      "${networkController.currentIndex!.toUpperCase()}",
-                      style: GoogleFonts.inter(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "${networkController.currentIndex!.toUpperCase()}",
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          "$indiceVal",
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

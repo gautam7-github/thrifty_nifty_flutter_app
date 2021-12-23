@@ -29,10 +29,10 @@ class _IndexPageState extends State<IndexPage> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: LiquidPullToRefresh(
-          color: Color(0xFF05fa9b),
-          backgroundColor: Color(0xFF2e2e2e),
+          color: Colors.transparent,
+          backgroundColor: Color(0xFF05fa9b),
           showChildOpacityTransition: false,
-          animSpeedFactor: 3.0,
+          animSpeedFactor: 4.0,
           onRefresh: () async {
             HapticFeedback.selectionClick();
             await networkController.fetchIndicesData();
@@ -57,6 +57,7 @@ class _IndexPageState extends State<IndexPage> {
                           indicesMap[indices[idx].index];
                     },
                   );
+                  indiceVal = indices[idx].cmktPrice;
                   Get.to(
                     () => LoadingPage(
                       ToIndex: false,

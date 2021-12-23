@@ -20,14 +20,22 @@ class _LoadingPageState extends State<LoadingPage> {
   var quirks = [
     "Meanwhile, have some lassi ;D",
     "Meanwhile, listen to Eminem :D",
-    "Meanwhile, take care of yourself!"
+    "Meanwhile, take care of yourself!",
+    "Meanwhile, get cozy in rajai!",
+  ];
+  var loaders = [
+    Indicator.orbit,
+    Indicator.lineScaleParty,
+    Indicator.audioEqualizer,
   ];
 
   String? chosen;
+  Indicator? loader;
   @override
   void initState() {
     final _random = Random();
     chosen = quirks[_random.nextInt(quirks.length)];
+    loader = loaders[_random.nextInt(loaders.length)];
     super.initState();
   }
 
@@ -56,7 +64,7 @@ class _LoadingPageState extends State<LoadingPage> {
                         Container(
                           height: MediaQuery.of(context).size.height / 7,
                           child: LoadingIndicator(
-                            indicatorType: Indicator.lineScaleParty,
+                            indicatorType: loader!,
                             colors: [Colors.green, Colors.red],
                             pathBackgroundColor: Colors.green,
                           ),

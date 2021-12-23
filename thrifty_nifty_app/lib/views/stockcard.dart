@@ -158,7 +158,7 @@ class StockDetailPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${stocks[index!].change}",
+                    "${stocks[index!].change} (${stocks[index!].changeinPct}%)",
                     style: GoogleFonts.inter(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -261,6 +261,28 @@ class StockDetailPage extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    "Market Cap.",
+                    style: GoogleFonts.raleway(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                  Text(
+                    "${stocks[index!].mCap}",
+                    style: GoogleFonts.raleway(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none,
+                    ),
                   ),
                 ],
               ),

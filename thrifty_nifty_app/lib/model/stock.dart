@@ -11,6 +11,7 @@ class Stock {
   dynamic dAYHIGH;
   dynamic dAYLOW;
   dynamic ePS;
+  dynamic mCap;
   Stock({
     required this.ticker,
     required this.company,
@@ -24,6 +25,7 @@ class Stock {
     required this.dAYHIGH,
     required this.dAYLOW,
     required this.ePS,
+    required this.mCap,
   });
   factory Stock.fromJson(Map<String, dynamic> json) {
     return Stock(
@@ -39,6 +41,7 @@ class Stock {
       dAYHIGH: json['DAYHIGH'],
       dAYLOW: json['DAYLOW'],
       ePS: json['EPS'],
+      mCap: json['MKTCAP'],
     );
   }
   @override
